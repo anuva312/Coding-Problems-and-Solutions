@@ -15,6 +15,7 @@ class Graph:
             self.adj_list[b].append(a)
 
     def reach(self, x):
+        # Exploring the graph in depth first order
         self.visited[x] = 1
         for node in self.adj_list[x]:
             if not self.visited[node]:
