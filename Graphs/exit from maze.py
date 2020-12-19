@@ -32,6 +32,7 @@ if __name__ == '__main__':
     n, m = map(int, input().split())
     maze = Graph(n)
     maze.initialize_adj_list(m)
+    # Taking input: the nodes between which we are to find if a path exists
     src, maze.dest = map(int, input().split())
     maze.reach(src)
     print(maze.result)
