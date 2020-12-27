@@ -1,4 +1,4 @@
-# Check if cycles are present in a given graph
+# Find the topological list ordering of the graph
 
 class Graph:
     def __init__(self,n):
@@ -24,7 +24,9 @@ class Graph:
             for node in self.adj_list[x]:
                 if not self.visited[node]:
                     self.explore(node)
-            self.topological_list.append(x)
+            if not self.adj_list[x]:
+                self.topological_list.append(x)
+                self.remove_element(x)
         except KeyError:
             pass
 
@@ -32,10 +34,14 @@ class Graph:
         for node in range(1,self.size):
             if not self.visited[node]:
                 self.explore(node)
+        for node in range(1,self.size):
+            if node not in self.topological_list:
+                self.topological_list.append(node)
 
     def remove_element(self,x):
+        # removes element from adjacency list (both as values and key)
         self.adj_list.pop(x)
-        for ele in self.adj_list.keys:
+        for ele in self.adj_list.keys():
             try:
                 self.adj_list[ele].remove(x)
             except ValueError:
