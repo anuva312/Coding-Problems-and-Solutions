@@ -20,32 +20,18 @@ class Graph:
     def explore(self,x):
         # Exploring the graph in depth first order
         self.visited[x] = 1
-        try:
-            for node in self.adj_list[x]:
-                if not self.visited[node]:
-                    self.explore(node)
-            if not self.adj_list[x]:
-                self.topological_list.append(x)
-                self.remove_element(x)
-        except KeyError:
-            pass
+        for node in self.adj_list[x]:
+            if not self.visited[node]:
+                self.explore(node)
+        # Adding the node to the topological sort list
+        self.topological_list.append(x)
 
     def dfs(self):
         for node in range(1,self.size):
             if not self.visited[node]:
                 self.explore(node)
-        for node in range(1,self.size):
-            if node not in self.topological_list:
-                self.topological_list.append(node)
 
-    def remove_element(self,x):
-        # removes element from adjacency list (both as values and key)
-        self.adj_list.pop(x)
-        for ele in self.adj_list.keys():
-            try:
-                self.adj_list[ele].remove(x)
-            except ValueError:
-                pass
+
         
 
 
