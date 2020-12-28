@@ -32,9 +32,6 @@ class Graph:
                 self.explore(node)
 
 
-        
-
-
 if __name__ == '__main__':
     # Taking input : no.of vertices, edges
     n, m = map(int, input().split())
