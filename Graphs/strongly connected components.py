@@ -1,4 +1,7 @@
 # Find the number of strongly connected components in the graph
+import sys
+sys.setrecursionlimit(10**6) 
+
 class Graph:
     def __init__(self, n):
         self.adj_list = {}
@@ -35,7 +38,6 @@ class Graph:
 
     def find_scc(self):
         scc = 0
-        self.dfs()
         stack = self.post_time
         self.post_time = []
         self.adj_list = self.rev_adj_list
@@ -54,4 +56,5 @@ if __name__ == '__main__':
     n, m = map(int, input().split())
     graph = Graph(n)
     graph.initialize_adj_list(m)
+    graph.dfs()
     print(graph.find_scc())
